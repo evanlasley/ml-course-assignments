@@ -19,8 +19,8 @@ for iter = 1:num_iters
 
     h = X * theta;
     errors = h - y;
-    del_MSE = 1/m * (X' * errors);
-    theta = theta - alpha * del_MSE;
+    del_J = 1/m * (X' * errors);
+    theta = theta - alpha * del_J;
 
     % ============================================================
 
