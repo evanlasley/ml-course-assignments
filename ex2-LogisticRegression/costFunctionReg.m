@@ -20,13 +20,14 @@ grad = zeros(size(theta));
 n = size(theta);
 h = sigmoid(X*theta);
 theta(1) = 0;
-J = (1/m)*(-transpose(y)*log(h)-transpose(1 - y)*log(1 - h))+(lambda/(2*m))*transpose(theta)*theta;
+J = (1/m)*(-y'*log(h)-(1 - y)'*log(1 - h))+(lambda/(2*m)).*theta'*theta;
 
-delta = transpose(X)*(h - y);
-grad(1) = (1/m)*transpose(X(:,1))*(h - y);
-for i = 2:n
-  grad(i) = (1/m)*transpose(X(:,i))*(h-y) + (lambda/m)*theta(i);
-end
+delta = X'*(h - y);
+grad = (1/m)*X'*(h - y);
+temp = theta;
+temp(1) = 0;
+grad = grad + (lambda/m)*temp;
+
 % =============================================================
 
 end
